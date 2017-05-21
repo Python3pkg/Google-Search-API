@@ -7,7 +7,7 @@ from pkg_resources import Requirement as Req
 try:
     from urllib.parse import urlparse
 except ImportError:
-    from urlparse import urlparse
+    from urllib.parse import urlparse
 
 
 __version__ = '0.1.0'
@@ -123,7 +123,7 @@ class Requirements:
                     full_name = "{} {}".format(full_name, specifiers)
                 dependencies.append(full_name)
         for requirement in self.get_dependency_links():
-            print(":: (base:install_requires) {}".format(requirement.name))
+            print((":: (base:install_requires) {}".format(requirement.name)))
             dependencies.append(requirement.name)
         return dependencies
 
@@ -137,7 +137,7 @@ class Requirements:
                 specifiers = self.format_specifiers(requirement)
                 if specifiers:
                     full_name = "{} {}".format(full_name, specifiers)
-                print(":: (tests:tests_require) {}".format(full_name))
+                print((":: (tests:tests_require) {}".format(full_name)))
                 dependencies.append(full_name)
         return dependencies
 
@@ -146,8 +146,8 @@ class Requirements:
         dependencies = []
         for requirement in self.parse(self.requirements_path):
             if requirement.uri or requirement.vcs or requirement.path:
-                print(":: (base:dependency_links) {}".format(
-                    requirement.uri))
+                print((":: (base:dependency_links) {}".format(
+                    requirement.uri)))
                 dependencies.append(requirement.uri)
         return dependencies
 
